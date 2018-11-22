@@ -3,9 +3,9 @@ define(function(require) {
     var Backbone = require('backbone');
     var Adapt = require('coreJS/adapt');
 
-    var DrawerPageNavigationView = Backbone.View.extend({
+    var drawerQuestionsView = Backbone.View.extend({
 
-        className: "drawerPageNavigation",
+        className: "drawerQuestions",
 
         initialize: function() {
             this.listenTo(Adapt, 'remove', this.remove);
@@ -36,5 +36,5 @@ define(function(require) {
         }
     });
 
-    return DrawerPageNavigationView;
+    return drawerQuestionsView;
 })

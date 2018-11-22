@@ -14,7 +14,7 @@
         "course": {
           "type":"object",
           "properties":{
-            "_drawerPageNavigation": {
+            "_drawerQuestions": {
               "type": "object",
               "required": false,
               "legend": "Navigation",
@@ -26,7 +26,16 @@
                   "title": "Is enabled",
                   "inputType": {"type": "Boolean", "options": [true, false]},
                   "validators": [],
-                  "help": "If set to 'false', Resources will be disabled"
+                  "help": "If set to 'false', drawerQuestions will be disabled"
+                },
+                "_drawerOrder": {
+                  "type": "number",
+                  "required": false,
+                  "title": "Drawer order",
+                  "inputType": "Number",
+                  "default": 0,
+                  "help": "The order in which this extension should appear as a drawer item",
+                  "validators": ["number"]
                 },
                 "title": {
                   "type": "string",
@@ -39,13 +48,13 @@
                 },
                 "description": {
                   "type": "string",
-                  "default":"Click here to navigate this course",
+                  "default":"Click here to navigate the questions of this course",
                   "required": false,
                   "title": "",
                   "inputType": "Text",
                   "validators": [],
                   "translatable": true
-                }                
+                }
               }
             }
           }
