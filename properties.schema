@@ -17,7 +17,7 @@
             "_drawerQuestions": {
               "type": "object",
               "required": false,
-              "legend": "Navigation",
+              "legend": "Questions Navigation",
               "properties": {
                 "_isEnabled": {
                   "type": "boolean",

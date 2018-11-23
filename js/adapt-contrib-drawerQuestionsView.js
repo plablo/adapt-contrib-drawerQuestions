@@ -18,8 +18,21 @@ define(function(require) {
 
         render: function() {
             var collectionData = this.collection.toJSON();
+            // Mod 0.0.2 - Añadir un orden al listado del índice.
+            collectionData.sort(function(e1,e2){
+            	if (e1._parentId == 'course')
+            		return -1;
+            	else if (e2._parentId == 'course')
+            		return 1;
+            	else
+            		return e1.title.localeCompare(e2.title);
+            });
             var modelData = this.model.toJSON();
-            var template = Handlebars.templates["gmcq"];
+
+            console.log(collectionData);
+            console.log(modelData);
+
+            var template = Handlebars.templates["contentObjects"];
             this.$el.html(template({model: modelData, resources: collectionData, _globals: Adapt.course.get('_globals')}));
             _.defer(_.bind(this.postRender, this));
             return this;
