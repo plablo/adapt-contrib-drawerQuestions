@@ -29,8 +29,8 @@ define(function(require) {
             });
             var modelData = this.model.toJSON();
 
-            console.log(collectionData);
-            console.log(modelData);
+            console.log('collectionData: ' + collectionData);
+            console.log('modelData: ' + modelData);
 
             var template = Handlebars.templates["contentObjects"];
             this.$el.html(template({model: modelData, resources: collectionData, _globals: Adapt.course.get('_globals')}));
