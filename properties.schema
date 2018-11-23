@@ -39,7 +39,7 @@
                 },
                 "title": {
                   "type": "string",
-                  "default":"Navigation",
+                  "default":"Questions Navigation",
                   "required": true,
                   "title": "",
                   "inputType": "Text",

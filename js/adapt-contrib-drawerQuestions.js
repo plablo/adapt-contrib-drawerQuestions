@@ -22,14 +22,14 @@ define([
 
         var drawerQuestionsData = Adapt.course.get('_drawerQuestions');
         var contentObjectItems = Adapt.contentObjects.models;
-
+// TODO: change this comment
         // do not proceed until resource set on course.json
         if (!contentObjectItems || drawerQuestionsData._isEnabled === false) return;
 
         var drawerObject = {
             title: drawerQuestionsData.title,
             description: drawerQuestionsData.description,
-            className: 'pageNavigation-drawer'
+            className: 'Questions-drawer'
         };
         // Syntax for adding a Drawer item
         // Adapt.drawer.addItem([object], [callbackEvent]);
