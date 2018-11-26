@@ -1,77 +1,90 @@
 {
-  "type":"object",
-  "$schema": "http://json-schema.org/draft-04/schema",
-  "id": "http://jsonschema.net",
-  "required":false,
-  "properties":{
-    "pluginLocations": {
-      "type":"object",
-      "required":true,
-      "properties":{
-        "config": {
-          "type":"object"
-        },
-        "course": {
-          "type":"object",
-          "properties":{
-            "_drawerQuestions": {
-              "type": "object",
-              "required": false,
-              "legend": "Questions Navigation",
-              "properties": {
-                "_isEnabled": {
-                  "type": "boolean",
-                  "required":true,
-                  "default": true,
-                  "title": "Is enabled",
-                  "inputType": {"type": "Boolean", "options": [true, false]},
-                  "validators": [],
-                  "help": "If set to 'false', drawerQuestions will be disabled"
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "id": "http://jsonschema.net",
+    "required": false,
+    "properties": {
+        "pluginLocations": {
+            "type": "object",
+            "required": true,
+            "properties": {
+                "config": {
+                    "type": "object"
                 },
-                "_drawerOrder": {
-                  "type": "number",
-                  "required": false,
-                  "title": "Drawer order",
-                  "inputType": "Number",
-                  "default": 0,
-                  "help": "The order in which this extension should appear as a drawer item",
-                  "validators": ["number"]
+                "course": {
+                    "type": "object",
+                    "properties": {
+                        "_drawerQuestions": {
+                            "type": "object",
+                            "required": false,
+                            "legend": "Questions Navigation",
+                            "properties": {
+                                "_isEnabled": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "default": true,
+                                    "title": "Is enabled",
+                                    "inputType": {
+                                        "type": "Boolean",
+                                        "options": [true, false]
+                                    },
+                                    "validators": [],
+                                    "help": "If set to 'false', drawerQuestions will be disabled"
+                                },
+                                "_drawerOrder": {
+                                    "type": "number",
+                                    "required": false,
+                                    "title": "Drawer order",
+                                    "inputType": "Number",
+                                    "default": 0,
+                                    "help": "The order in which this extension should appear as a drawer item",
+                                    "validators": ["number"]
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "default": "Questions Navigation",
+                                    "required": true,
+                                    "title": "",
+                                    "inputType": "Text",
+                                    "validators": ["required"],
+                                    "translatable": true
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "default": "Click here to navigate the questions of this course",
+                                    "required": false,
+                                    "title": "",
+                                    "inputType": "Text",
+                                    "validators": [],
+                                    "translatable": true
+                                },
+                                "disabledMessage": {
+                                    "type": "string",
+                                    "default": "The interaction is not complete",
+                                    "required": false,
+                                    "title": "Disabled message",
+                                    "inputType": "Text",
+                                    "help": "Message to display in case the interaction is not complete",
+                                    "validators": [],
+                                    "translatable": true
+                                }
+                            }
+                        }
+                    }
                 },
-                "title": {
-                  "type": "string",
-                  "default":"Questions Navigation",
-                  "required": true,
-                  "title": "",
-                  "inputType": "Text",
-                  "validators": ["required"],
-                  "translatable": true
+                "contentobject": {
+                    "type": "object"
                 },
-                "description": {
-                  "type": "string",
-                  "default":"Click here to navigate the questions of this course",
-                  "required": false,
-                  "title": "",
-                  "inputType": "Text",
-                  "validators": [],
-                  "translatable": true
+                "article": {
+                    "type": "object"
+                },
+                "block": {
+                    "type": "object"
+                },
+                "component": {
+                    "type": "object"
                 }
-              }
             }
-          }
-        },
-        "contentobject": {
-          "type":"object"
-        },
-        "article": {
-          "type":"object"
-        },
-        "block": {
-          "type":"object"
-        },
-        "component": {
-          "type":"object"
         }
-      }
     }
-  }
 }
