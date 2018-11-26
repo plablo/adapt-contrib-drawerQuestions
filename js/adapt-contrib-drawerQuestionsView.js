@@ -1,9 +1,8 @@
-define(function(require) {
+define([
+    'core/js/adapt'
+], function(Adapt) {
 
-    var Backbone = require('backbone');
-    var Adapt = require('coreJS/adapt');
-
-    var drawerQuestionsView = Backbone.View.extend({
+    var DrawerQuestionsView = Backbone.View.extend({
 
         className: "drawerQuestions",
 
@@ -11,29 +10,41 @@ define(function(require) {
             this.listenTo(Adapt, 'remove', this.remove);
             this.render();
         },
-// TODO: the event may change, find the correct class if needed.
+
         events: {
-            'click .contentObjects-item-container button': 'onContentObjectMenuClicked'
+            'click .drawerQuestions-item-container button': 'onDrawerQuestionsMenuClicked'
         },
 
         render: function() {
+            this.collection.comparator = 'title';
+            this.collection.sort();
             var collectionData = this.collection.toJSON();
-            // Mod 0.0.2 - Añadir un orden al listado del índice.
-            collectionData.sort(function(e1,e2){
-            	if (e1._parentId == 'course')
-            		return -1;
-            	else if (e2._parentId == 'course')
-            		return 1;
-            	else
-            		return e1.title.localeCompare(e2.title);
-            });
+            // Get page and questions, ordered by page title.
+            collectionData = this.collection
+                .map(function(e) {
+                    return {
+                        'page': e.toJSON(),
+                        'questions': e.findDescendantModels('components', {
+                            where: {
+                                '_isQuestionType': true
+                            }
+                        }).map(function(e) {
+                            return e.toJSON()
+                        })
+                    }
+                })
+                .sort(function(e1, e2) {
+                    return e1.page.title.localeCompare(e2.page.title)
+                });
+
             var modelData = this.model.toJSON();
 
-            console.log('collectionData: ' + collectionData);
-            console.log('modelData: ' + modelData);
-
-            var template = Handlebars.templates["contentObjects"];
-            this.$el.html(template({model: modelData, resources: collectionData, _globals: Adapt.course.get('_globals')}));
+            var template = Handlebars.templates["drawerQuestions"];
+            this.$el.html(template({
+                model: modelData,
+                resources: collectionData,
+                _globals: Adapt.course.get('_globals')
+            }));
             _.defer(_.bind(this.postRender, this));
             return this;
         },
@@ -42,14 +53,14 @@ define(function(require) {
             this.listenTo(Adapt, 'drawer:triggerCustomView', this.remove);
         },
 
-        onContentObjectMenuClicked: function(event) {
-            if(event && event.preventDefault) event.preventDefault();
-// TODO: if the item is locked, then disable it, not remove it.
-            if(this.model.get('_isLocked')) return;
-// TODO: Change the href with data-id.
-            Backbone.history.navigate('#/id/' + $(event.currentTarget).data("href"), {trigger: true});
+        onDrawerQuestionsMenuClicked: function(event) {
+            if (event && event.preventDefault) event.preventDefault();
+            if (this.model.get('_isLocked')) return;
+            Backbone.history.navigate('#/id/' + $(event.currentTarget).data("href"), {
+                trigger: true
+            });
         }
     });
 
-    return drawerQuestionsView;
+    return DrawerQuestionsView;
 })

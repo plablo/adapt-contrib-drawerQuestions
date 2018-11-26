@@ -1,0 +1,23 @@
+<div class="drawerQuestions-inner" role="complementary">
+	<div class="drawerQuestions-item-container">
+	{{#each resources}}
+	<div class="drawerQuestions-item drawer-item">
+		<!-- con cada punto tengo que obtener el listado de preguntas -->
+		<!-- necesito una función helper que me devuelva las preguntas hijas de la página -->
+		{{#each questions}}
+		<button class="base drawerQuestions-item-open drawer-item-open" data-href="{{_id}}" tabindex="0" role="button" {{#unless _isInteractionComplete}}disabled {{/unless}}>
+			<div class="drawer-item-title">
+				<div class="drawer-item-title-inner h6">{{{../page.title}}}</div>
+			</div>
+			{{#unless _isInteractionComplete}}
+			<div class="drawer-item-description">
+				<div class="drawer-item-description-inner">The interaction is not completed</div>
+			</div>
+			{{/unless}}
+		</button>
+		{{/each}}
+	</div>
+	{{/each}}
+	</div>
+	<div class="aria-label a11y-ignore-focus prevent-default" tabindex="0"/>
+</div>
