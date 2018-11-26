@@ -67,6 +67,18 @@
                                     "help": "Message to display in case the interaction is not complete",
                                     "validators": [],
                                     "translatable": true
+                                },
+                                "includePuntuableAssessments": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "default": true,
+                                    "title": "Include puntuable assessments",
+                                    "inputType": {
+                                        "type": "Boolean",
+                                        "options": [true, false]
+                                    },
+                                    "validators": [],
+                                    "help": "If set to 'false', puntuable assessments will not be displayed"
                                 }
                             }
                         }
