@@ -2,8 +2,6 @@
 	<div class="drawerQuestions-item-container">
 	{{#each resources}}
 	<div class="drawerQuestions-item drawer-item">
-		<!-- con cada punto tengo que obtener el listado de preguntas -->
-		<!-- necesito una función helper que me devuelva las preguntas hijas de la página -->
 		{{#each questions}}
 		<button class="base drawerQuestions-item-open drawer-item-open" data-href="{{_id}}" tabindex="0" role="button" {{#unless _isInteractionComplete}}disabled {{/unless}}>
 			<div class="drawer-item-title">
@@ -11,7 +9,7 @@
 			</div>
 			{{#unless _isInteractionComplete}}
 			<div class="drawer-item-description">
-				<div class="drawer-item-description-inner">The interaction is not completed</div>
+				<div class="drawer-item-description-inner">{{{../../model.disabledMessage}}}</div>
 			</div>
 			{{/unless}}
 		</button>

@@ -1,3 +1,9 @@
+/*
+    PLUGIN CORE
+        - Initialize plugin
+        - Get the model info
+        - Get the needed data from course
+*/
 define([
     'backbone',
     'coreJS/adapt',
@@ -23,7 +29,9 @@ define([
         var drawerQuestionsData = Adapt.course.get('_drawerQuestions');
 
         /*
-            Get accesible pages with question componentes.
+            Get accesible pages with question components. In case
+            "includePuntuableAssessments" it's not selected, filter those that
+            have a question weight greater than 0.
         */
 
         var contentObjectItems = Adapt.contentObjects
@@ -32,11 +40,18 @@ define([
                 '_type': 'page'
             })
             .filter(function(e) {
-                return e.findDescendantModels('components', {
+                var descendants = e.findDescendantModels('components', {
                     where: {
                         '_isQuestionType': true
                     }
-                }).length > 0;
+                })
+                .filter(function(e){
+                    if(!drawerQuestionsData.includePuntuableAssessments){
+                        return e.attributes._questionWeight <= 0
+                    }
+                    return true;
+                });
+                return descendants.length > 0;
             });
 
         // do not proceed until drawerQuestions set on course.json

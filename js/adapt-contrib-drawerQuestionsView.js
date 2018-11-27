@@ -1,3 +1,10 @@
+/*
+    PLUGIN VIEW
+        - Initialize view
+        - Define the events
+        - Prepare the data to be displayed
+        - Send the data to the template
+*/
 define([
     'core/js/adapt'
 ], function(Adapt) {
@@ -16,11 +23,10 @@ define([
         },
 
         render: function() {
+            // Get page and questions, ordered by page title.
             this.collection.comparator = 'title';
             this.collection.sort();
-            var collectionData = this.collection.toJSON();
-            // Get page and questions, ordered by page title.
-            collectionData = this.collection
+            var collectionData = this.collection
                 .map(function(e) {
                     return {
                         'page': e.toJSON(),
@@ -32,9 +38,6 @@ define([
                             return e.toJSON()
                         })
                     }
-                })
-                .sort(function(e1, e2) {
-                    return e1.page.title.localeCompare(e2.page.title)
                 });
 
             var modelData = this.model.toJSON();
