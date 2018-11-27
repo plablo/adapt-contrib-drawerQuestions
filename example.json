@@ -1,6 +1,9 @@
 // To go in the course.json file
 "_drawerQuestions": {
     "_isEnabled": true,
+    "_drawerOrder": 0,
     "title": "Questions navigation",
-    "description": "Click here to navigate the questions of this course"
+    "description": "Click here to navigate the questions of this course",
+    "disabledMessage": "The interaction is not complete",
+    "includePuntuableAssessments": true
 }
